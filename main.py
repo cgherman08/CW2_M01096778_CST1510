@@ -20,5 +20,7 @@ def main():
             print('Good bye!')
             break
             
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
+
+

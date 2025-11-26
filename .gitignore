@@ -4,6 +4,9 @@ __pycache__/
 .vscode/
 .idea/
 users.txt
-
+.csv
+.db
+DATA
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
+DATA/it_tickets.csv
