@@ -9,3 +9,4 @@ users.txt
 DATA
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
+.editorconfig
