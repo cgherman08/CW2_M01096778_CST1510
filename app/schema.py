@@ -1,13 +1,14 @@
-import bcrypt
+from db import conn
 
-def hash_password(pwd):
-    password_bytes = pwd.encode('utf-8')
-    salt = bcrypt.gensalt()
-    hashed_password = bcrypt.hashpw(password_bytes, salt)
-    return hashed_password.decode('utf-8')
+def create_user_table():
+    curr = conn.cursor()
+    curr.execute(
+        """CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_name TEXT NOT NULL UNIQUE,
+            password_hash TEXT NOT NULL)
+            """)
+    conn.commit()
+    print('User table created!')
 
-def validate_password(pwd, hashed):
-    password_bytes = pwd.encode('utf-8')
-    hashed_bytes = hashed.encode('utf-8')
-    return bcrypt.checkpw(password_bytes, hashed_bytes)
-    
+

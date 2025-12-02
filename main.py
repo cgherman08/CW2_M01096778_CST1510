@@ -1,4 +1,5 @@
-from apl import register_user, login_user
+from app.users import user_registration, user_login
+from app.db import conn, DATA_PATH
 
 def menu():
     print('Chose an option: ') 
@@ -11,16 +12,14 @@ def main():
         menu()
         choice = input('')
         if choice == '1':
-            register_user()
+            user_registration(conn)
         elif choice == '2':
-            user_name = input('Enter username: ')
-            password = input('Enter password: ')
-            print(login_user(user_name, password))
+            print(user_login(conn))
         elif choice == '3':
             print('Good bye!')
             break
             
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
 
 
