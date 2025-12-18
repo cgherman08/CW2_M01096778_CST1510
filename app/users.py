@@ -1,6 +1,7 @@
-from .db import conn, DATA_PATH
+from .db import get_connection
 import bcrypt
 
+conn = get_connection()
 
 def hash_password(password: str) -> str:
     salt = bcrypt.gensalt()
@@ -32,24 +33,26 @@ def user_registration(conn):
     # else:
     #     print('Username in use, please choose another username')    
         
-
-# def user_login(conn):
-#     name = input('Enter your name to log in: ')
-#     password = input('Enter your password: ')
-#     id,name_db,hash_db = get_one_user(conn, name)
-#     if name == name_db:
-#         return verify_password(hash_db, password)
     
-def user_login(conn):
-    name = input('Enter your name to log in: ')
-    password = input('Enter your password: ')
-    user = get_one_user(conn, name)
-    if user:
-        id, name_db, hash_db = user
-        if name == name_db:
-            print('Welcome')
-            return verify_password(hash_db, password)
-    return False
+def user_login(conn, name, password) -> bool:
+    # name = input('Enter your name to log in: ')
+    # password = input('Enter your password: ')
+    id, name, hash = get_one_user(conn, name)
+    # print(f'Welcome {name}!')
+    # user = get_one_user(conn, name)
+    # if user:
+    #     id, name_db, hash_db = user
+    #     if name == name_db:
+    #         print('Welcome')
+    #         return verify_password(hash_db, password)
+    # return False
+    if name == name and verify_password(hash, password):
+        return True
+    else:
+        return False
+    
+   
+        
 
 def set_user(conn, name, hash):
     curr = conn.cursor()
@@ -66,7 +69,6 @@ def get_all_users():
     for i in all_users:
         print(i)
     user = curr.execute()
-    conn.close()
     return user
 
 def get_one_user(conn, name):

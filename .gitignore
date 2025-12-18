@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 .env
+.venv
 .vscode/
 .idea/
 users.txt
@@ -10,3 +11,4 @@ DATA
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
 .editorconfig
+test.py

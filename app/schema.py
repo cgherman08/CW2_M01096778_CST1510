@@ -1,4 +1,6 @@
-from db import conn
+from db import get_connection
+
+conn = get_connection()
 
 def create_user_table():
     curr = conn.cursor()
@@ -10,5 +12,6 @@ def create_user_table():
             """)
     conn.commit()
     print('User table created!')
+
 
 

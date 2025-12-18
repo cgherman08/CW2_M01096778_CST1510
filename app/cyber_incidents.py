@@ -1,5 +1,7 @@
 import pandas as pd
-from db import conn
+from .db import get_connection
+
+conn = get_connection()
 
 def get_all_cyber_incidents(conn):
     sql = 'SELECT * from cyber_incidents'

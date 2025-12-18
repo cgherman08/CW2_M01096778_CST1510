@@ -16,3 +16,4 @@ def migrate_datasets_metadata(conn):
     print('Data loaded successfully') 
 
 
+migrate_datasets_metadata(conn)
