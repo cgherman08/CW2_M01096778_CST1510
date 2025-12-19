@@ -1,44 +1,39 @@
 import streamlit as st
-from app.users import set_user, user_login, hash_password
-from app.db import get_connection   
-
-conn = get_connection() 
-
-st.title('Welcome to the Home page')
 
 if 'logged_in' not in st.session_state:
-    st.session_state['logged_in'] = False  
-     
-if 'username' not in st.session_state:
-    st.session_state['username'] = ''
-    
-tab_login, tab_register = st.tabs(['Log In', 'Register'])
+    st.session_state.logged_in = False
 
-with tab_login:
-    st.header('Log In')
-    login_username = st.text_input('Username', key='login_username')
-    login_password = st.text_input('Password', type='password', key='login_password')
-    if st.button('Log In'):
-        if user_login(conn, login_username, login_password):
-            st.success('Login successful!')
-            st.session_state['logged_in'] = True
-            st.success('You are now logged in!')
-            st.session_state['username'] = login_username
-            st.switch_page('pages/Dashboard.py') 
-        else:
-            st.error('Invalid username or password. Please try again.')
-        
-with tab_register:
-    st.header('Register')
-    register_username = st.text_input('Choose a Username', key='register_username')
-    register_password = st.text_input('Choose a Password', type='password', key='register_password')
-    hash = hash_password(register_password)
-    if st.button('Register'):
-        set_user(conn, register_username, hash)
-        st.success('Registration successful! You can now log in.')
+st.title("Operational Intelligence Hub")
+st.subheader("One place for incidents, tickets, datasets, and AI assistance")
+
+# Quick actions
+col_login, col_register = st.columns([1, 1])
+with col_login:
+    if st.button("Log In", type="primary"):
+        st.switch_page("pages/1_🔐 _Login.py")
+with col_register:
+    if st.button("Register"):
+        st.switch_page("pages/1_🔐 _Login.py")
+
+st.write(
+    "Use the sidebar to access each module. Data and actions live on their dedicated pages after you sign in."
+)
+
+st.markdown(
+    """
+    **Pages**
+    - Login: access your account and session.
+    - Cybersecurity: review incidents, timelines, and status.
+    - Data Science: browse datasets and metadata.
+    - IT Operations: manage IT tickets and assignments.
+    - AI Assistant: ask questions, draft summaries, and get quick help.
+    """
+)
+
+st.info("Please log in to work with live data on other pages.")
+
+
     
-if st.button('Log Out'):
-    st.session_state['logged_in'] = False
-    st.info('You have been logged out.')
+
     
     

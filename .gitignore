@@ -4,11 +4,8 @@ __pycache__/
 .venv
 .vscode/
 .idea/
-users.txt
-.csv
-.db
-DATA
-#Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
 .editorconfig
-test.py
+*.db
+*.csv
+*.txt

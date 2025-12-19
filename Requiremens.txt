@@ -1,3 +1,4 @@
 pandas
 bcrypt
 streamlit
+groq
